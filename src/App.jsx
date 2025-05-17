@@ -1,5 +1,5 @@
 //Rus
-// 01. Настройте router согласно этой структуре
+// 01. Настройте router согласно этой структуре +++
 // src/
 // ├── components/
 // │   ├── Header.jsx            // Навигационное меню с Link/NavLink
@@ -14,13 +14,13 @@
 // │   └── NotFoundPage.jsx      // Страница 404
 // ├── App.jsx                   // Корневой компонент с <Router> и маршрутизацией
 
-// 02. Создайте ссылки на страницы в компоненте Header и разместите его на всех страницах любым удобным способом.
-// 03. Настройте путь на страницу ProductDetails динамически. Отобразите на странице параметр из пути текущей страницы.
-// 04. Посмотрите задание по query string в компоненте searchPage.jsx.
-// 05. В компоненте LoginPage настройте кнопку "Log in" с использованием <Link></Link>, чтобы она перенаправляла пользователя на главную страницу и передавала объект state {login: "You are logged in"}.
-// 06. В компоненте LoginPage программно настройте кнопку "Forgot login", чтобы она перенаправляла пользователя на главную страницу и передавала объект state {login: "You are not logged in"}.
-// 07. На главной странице отобразите значение state login внутри тега <p></p>.
-// 08. Настройте редирект со всех несуществующих страниц на главную страницу.
+// 02. Создайте ссылки на страницы в компоненте Header и разместите его на всех страницах любым удобным способом. +++
+// 03. Настройте путь на страницу ProductDetails динамически. Отобразите на странице параметр из пути текущей страницы. +++
+// 04. Посмотрите задание по query string в компоненте searchPage.jsx. +++
+// 05. В компоненте LoginPage настройте кнопку "Log in" с использованием <Link></Link>, чтобы она перенаправляла пользователя на главную страницу и передавала объект state {login: "You are logged in"}. +++
+// 06. В компоненте LoginPage программно настройте кнопку "Forgot login", чтобы она перенаправляла пользователя на главную страницу и передавала объект state {login: "You are not logged in"}. +++
+// 07. На главной странице отобразите значение state login внутри тега <p></p>. +++
+// 08. Настройте редирект со всех несуществующих страниц на главную страницу. +++
 
 //Eng
 /*
@@ -51,8 +51,34 @@
 // 08. Set up a redirect from all non-existent pages to the main page.
 */
 
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductDetails from "./pages/ProductDetails";
+import SearchPage from "./pages/SearchPage";
+import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import Layout from "./components/Layout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "about", element: <AboutPage /> },
+      { path: "searchpage", element: <SearchPage /> },
+      { path: "category/:categoryId", element: <ProductsPage /> },
+      { path: "product/:productId", element: <ProductDetails /> },
+      { path: "login", element: <LoginPage /> },
+      { path: "*", element: <Navigate to="/"/> },
+    ],
+  },
+]);
+
 function App() {
-  return <div></div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

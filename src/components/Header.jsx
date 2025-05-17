@@ -1,9 +1,15 @@
+import { NavLink } from "react-router-dom";
+
 function Header() {
   return (
-    <div>
-      <header>Header</header>
-      <hr />
-    </div>
+    <>
+    <h1>Header</h1>
+        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/about"}>About</NavLink>
+        <NavLink to={"/searchpage"}>Search</NavLink>
+        <NavLink to={"/login"}>Login</NavLink>
+      <hr/>
+    </>
   );
 }
 
